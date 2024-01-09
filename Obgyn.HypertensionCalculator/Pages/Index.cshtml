@@ -1,0 +1,103 @@
+@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Obgyn.HypertensionCalculator.Pages.CalculatorModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Postpartum Hypertension Readmission Risk Calculator</h1>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                    <label for="#MaternalAge" class="form-label">Maternal age</label>
+                    <input type="number" class="form-control" asp-for="MaternalAge" />
+                </div>
+                <div class="mb-3">
+                    <label for="#Bmi" class="form-label">Pre-pregnancy body mass index (BMI) km/m2</label>
+                    <input type="number" step="any" class="form-control" asp-for="PrepregnancyBmi" />
+                </div>
+                <div class="mb-3">
+                    <label for="#GestationalAge" class="form-label">Gestational age at delivery (in weeks)</label>
+                    <input type="number" step="any" class="form-control" asp-for="GestationalAge" />
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" class="form-check-input" asp-for="Ibuprofen" />
+                    <label for="#IbuprofenUse" class="form-check-label">Ibuprofen use postpartum</label>
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" class="form-check-input" asp-for="HydralazineIv" />
+                    <label for="#HydralazineIv" class="form-check-label">Hydralazine (intravenous) use during admission (pre/post delivery)</label>
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" class="form-check-input" asp-for="LabetalolOral" />
+                    <label for="#LabetalolOral" class="form-check-label">Labetalol (oral) use during admission (pre/post delivery)</label>
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" class="form-check-input" asp-for="LabetalolIv" />
+                    <label for="#LabetalolIv" class="form-check-label">Labetalol (intravenous) use during admission (pre/post delivery)</label>
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" class="form-check-input" asp-for="NifedipineXr" />
+                    <label for="#NifedipineXr" class="form-check-label">Nifedipine XR use during admission (pre/post delivery)</label>
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" class="form-check-input" asp-for="NifedipineIr" />
+                    <label for="#NifedipineIr" class="form-check-label">Nifedipine IR use during admission (pre/post delivery)</label>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                    <label for="#MaxSystolicBpLabor" class="form-label">Maximum systolic blood pressure (mmHg) in labor</label>
+                    <input type="number" step="any" class="form-control" asp-for="MaxSystolicBpLabor" />
+                </div>
+                <div class="mb-3">
+                    <label for="#MaxDiastolicBpLabor" class="form-label">Maximum diastolic blood pressure (mmHg) in labor</label>
+                    <input type="number" step="any" class="form-control" asp-for="MaxDiastolicBpLabor" />
+                </div>
+                <div class="mb-3">
+                    <label for="#MaxSystolicBp24" class="form-label">Maximum systolic blood pressure (mmHg) 24 hours after birth</label>
+                    <input type="number" step="any" class="form-control" asp-for="MaxSystolicBp24" />
+                </div>
+                <div class="mb-3">
+                    <label for="#MaxDiastolicBp24" class="form-label">Maximum diastolic blood pressure (mmHg) 24 hours after birth</label>
+                    <input type="number" step="any" class="form-control" asp-for="MaxDiastolicBp24" />
+                </div>
+                <div class="mb-3">
+                    <label for="#MaxSystolicBp48" class="form-label">Maximum systolic blood pressure (mmHg) 48 hours after birth</label>
+                    <input type="number" step="any" class="form-control" asp-for="MaxSystolicBp48" />
+                </div>
+                <div class="mb-3">
+                    <label for="#MaxDiastolicBp48" class="form-label">Maximum diastolic blood pressure (mmHg) 48 hours after birth</label>
+                    <input type="number" step="any" class="form-control" asp-for="MaxDiastolicBp48" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="submit" class="btn btn-primary mb-3" value="Calculate" />
+            </div>
+        </div>
+    </form>
+    @if (Model.Result != null)
+    {
+        <div class="row border border-dark">
+            <div class="col">
+                <h3>Result:</h3>
+                <span>@Model.Result</span>
+            </div>
+        </div>
+     }
+    <br />
+    <div class="row">
+        <div class="col">
+            <strong>Disclaimer</strong>
+            <p><em>The calculator provided on this webpage is intended to predict a person’s risk of readmission related to hypertension during pregnancy or after delivery. The data used to derive this prediction model and calculator included 32,645 women who delivered from 2009-2018 at a single-site Midwestern academic center. One hundred and seventy women in this dataset were readmitted in the postpartum period due to a hypertension-related diagnosis. The Random forest method used to identify the key predictive variables and final model achieved a sensitivity of 85%, specificity of 79%, and a balanced accuracy of 82% for predicting readmission. This calculator was created for research and educational purposes with the intention to improve the prediction or identification of women at risk for readmission due to hypertension during or after pregnancy and delivery.</em></p>
+            <p><em>The calculator is shared for the research and educational purposes for which it was intended, and University of Wisconsin disclaims all liability associated with the use of the calculator.  The information and results provided on this webpage are not intended to be nor should they be used as the sole basis for making health care decisions for any person. Physicians using this calculator in the care of their patients retain sole and ultimate responsibility for their own clinical decision-making and the treatment of their patients.  Individuals using this calculator for their own individual use are advised that the use of this calculator is not a substitute for medical advice from a trained health care professional and that they should consult with their personal health care provider about any questions about their health.  Use of this calculator or any other information on this page does not create a patient provider relationship between any individual and any University of Wisconsin School of Medicine and Public Health physician or other health care provider.</em></p>
+        </div>
+    </div>
+</div>
